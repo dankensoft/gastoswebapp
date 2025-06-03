@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Gestión de Presupuesto</h3>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="row g-3">
+    <div class="col-md-6">
+      <label for="mes" class="form-label">Mes</label>
+      <input type="number" id="mes" class="form-control" formControlName="mes" min="1" max="12" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="anio" class="form-label">Año</label>
+      <input type="number" id="anio" class="form-control" formControlName="anio" min="2000" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="idTipoGasto" class="form-label">Tipo de Gasto</label>
+      <input type="number" id="idTipoGasto" class="form-control" formControlName="idTipoGasto" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="monto" class="form-label">Monto</label>
+      <input type="number" id="monto" class="form-control" formControlName="monto" required>
+    </div>
+
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Guardar Presupuesto
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="presupuesto" class="mt-4 alert alert-success">
+    <strong>Presupuesto cargado:</strong><br>
+    Mes: {{ presupuesto?.mes }} / Año: {{ presupuesto?.anio }}<br>
+    Tipo de Gasto ID: {{ presupuesto?.idTipoGasto }}<br>
+    Monto: Q{{ presupuesto?.monto | number:'1.2-2' }}
+
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h3>Gestión de Tipos de Gasto</h3>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="input-group mb-3">
+      <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre del gasto" />
+      <button class="btn btn-primary" type="submit">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of tipos">
+        <td>{{ item.id }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" (click)="editar(item)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="eliminar(item.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

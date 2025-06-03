@@ -1,0 +1,83 @@
+<div class="container mt-3">
+  <h2>Registro de Gastos</h2>
+
+  <form [formGroup]="gastoForm" (ngSubmit)="guardar()">
+
+    <div class="mb-3">
+      <label for="fecha" class="form-label">Fecha</label>
+      <input type="date" id="fecha" class="form-control" formControlName="fecha" />
+      <div *ngIf="gastoForm.get('fecha')?.invalid && gastoForm.get('fecha')?.touched" class="text-danger">
+        Fecha requerida.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="idFondoMonetario" class="form-label">Fondo Monetario</label>
+      <select id="idFondoMonetario" class="form-select" formControlName="idFondoMonetario">
+        <option value="" disabled>Seleccione un fondo</option>
+        <option *ngFor="let fondo of fondosMonetarios" [value]="fondo.idFondoMonetario">{{ fondo.nombre }}</option>
+      </select>
+      <div *ngIf="gastoForm.get('idFondoMonetario')?.invalid && gastoForm.get('idFondoMonetario')?.touched" class="text-danger">
+        Fondo requerido.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nombreComercio" class="form-label">Nombre de Comercio</label>
+      <input type="text" id="nombreComercio" class="form-control" formControlName="nombreComercio" />
+      <div *ngIf="gastoForm.get('nombreComercio')?.invalid && gastoForm.get('nombreComercio')?.touched" class="text-danger">
+        Nombre requerido.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipoDocumento">Tipo de Documento</label>
+    <select id="tipoDocumento" class="form-control" formControlName="tipoDocumento">
+        <option value="">Seleccione...</option>
+        <option *ngFor="let tipo of tiposDocumento" [value]="tipo">{{ tipo }}</option>
+    </select>
+      <div *ngIf="gastoForm.get('tipoDocumento')?.invalid && gastoForm.get('tipoDocumento')?.touched" class="text-danger">
+        Tipo de documento requerido.
+      </div>
+    </div>
+
+    <hr />
+
+    <div formArrayName="detalles">
+      <div *ngFor="let detalle of detalles.controls; let i=index" [formGroupName]="i" class="mb-3 border rounded p-3">
+        <h5>Detalle {{ i + 1 }}</h5>
+
+        <div class="mb-2">
+          <label class="form-label">Tipo de Gasto</label>
+          <select class="form-select" formControlName="idTipoGasto">
+            <option value="" disabled>Seleccione tipo de gasto</option>
+            <option *ngFor="let tipo of tiposGasto" [value]="tipo.idTipoGasto">{{ tipo.nombre }}</option>
+          </select>
+          <div *ngIf="detalle.get('idTipoGasto')?.invalid && detalle.get('idTipoGasto')?.touched" class="text-danger">
+            Tipo de gasto requerido.
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Monto</label>
+          <input type="number" class="form-control" formControlName="monto" min="0.01" step="0.01" />
+          <div *ngIf="detalle.get('monto')?.invalid && detalle.get('monto')?.touched" class="text-danger">
+            Monto válido requerido.
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarDetalle(i)" *ngIf="detalles.length > 1">Eliminar detalle</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary mt-2" (click)="agregarDetalle()">Agregar detalle</button>
+
+    <hr />
+
+    <div *ngIf="alertSobregiro" class="alert alert-warning">
+      {{ alertSobregiro }}
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar Gasto</button>
+  </form>
+</div>

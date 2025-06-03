@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <a class="navbar-brand" href="#">Fondo Monetario - Gastos WebApp</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+
+      <!-- Mantenimientos -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="mantenimientosDropdown" role="button" data-bs-toggle="dropdown">
+          Mantenimientos
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/tipos-gasto">Tipos de Gasto</a></li>
+          <li><a class="dropdown-item" routerLink="/fondos-monetarios">Fondo Monetario</a></li>
+        </ul>
+      </li>
+
+      <!-- Movimientos -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="movimientosDropdown" role="button" data-bs-toggle="dropdown">
+          Movimientos
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/presupuestos">Presupuesto por tipo de gasto</a></li>
+          <li><a class="dropdown-item" routerLink="/gastos">Registros de gastos</a></li>
+          <li><a class="dropdown-item" routerLink="/depositos">Depósitos</a></li>
+        </ul>
+      </li>
+
+      <!-- Consultas y Reportes -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="reportesDropdown" role="button" data-bs-toggle="dropdown">
+          Consultas y Reportes
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/consulta-movimientos">Consulta de movimientos</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard">Gráfico Comparativo de Presupuesto y Ejecución</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>

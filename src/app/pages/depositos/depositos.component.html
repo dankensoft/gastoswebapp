@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h3>Registrar Depósito</h3>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="row g-3 mb-4">
+    <div class="col-md-4">
+      <label>Fondo Monetario</label>
+      <select class="form-select" formControlName="idFondoMonetario">
+        <option [ngValue]="null">Seleccione</option>
+        <option *ngFor="let f of fondos" [ngValue]="f.idFondoMonetario">{{ f.nombre }}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Monto</label>
+      <input type="number" class="form-control" formControlName="monto" />
+    </div>
+    <div class="col-md-4">
+      <label>Fecha</label>
+      <input type="date" class="form-control" formControlName="fecha" />
+    </div>
+    <div class="col-12">
+      <button class="btn btn-success" type="submit" [disabled]="form.invalid">Guardar</button>
+    </div>
+  </form>
+
+  <h4>Buscar por Rango de Fechas</h4>
+  <form [formGroup]="rangoForm" (ngSubmit)="buscarPorRango()" class="row g-3 mb-3">
+    <div class="col-md-3">
+      <label>Inicio</label>
+      <input type="date" class="form-control" formControlName="inicio" />
+    </div>
+    <div class="col-md-3">
+      <label>Fin</label>
+      <input type="date" class="form-control" formControlName="fin" />
+    </div>
+    <div class="col-md-3 align-self-end">
+      <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Fondo</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of depositos">
+        <td>{{ getNombreFondo(d.idFondoMonetario) }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
